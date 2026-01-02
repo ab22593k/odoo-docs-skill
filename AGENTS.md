@@ -22,12 +22,6 @@ Usage notes:
 <available_skills>
 
 <skill>
-<name>odoo-docs</name>
-<description>Comprehensive reference for LLM agents to navigate and work with Odoo documentation. Use when working with Odoo-related documentation tasks like finding installation guides, locating application documentation, searching developer tutorials/reference materials, understanding documentation structure, and assisting with queries about Odoo features, development, and maintenance. This skill provides organized domain-based references and search strategies for efficiently locating information across the entire Odoo documentation tree.</description>
-<location>project</location>
-</skill>
-
-<skill>
 <name>skill-creator</name>
 <description>Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.</description>
 <location>project</location>
