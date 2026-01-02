@@ -22,8 +22,20 @@ Usage notes:
 <available_skills>
 
 <skill>
-<name>skill-creator</name>
-<description>Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.</description>
+<name>odoo-docs</name>
+<description>Comprehensive reference for navigating and working with Odoo documentation. Provides domain identification and search strategies.</description>
+<location>project</location>
+</skill>
+
+<skill>
+<name>odoo-docs-validator</name>
+<description>Automated style and structure validation for Odoo documentation (RST files).</description>
+<location>project</location>
+</skill>
+
+<skill>
+<name>odoo-docs-scaffolder</name>
+<description>Streamlines creation of new Odoo documentation pages using standard templates.</description>
 <location>project</location>
 </skill>
 

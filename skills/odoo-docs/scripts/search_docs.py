@@ -46,6 +46,37 @@ def find_files_by_keyword(
     return matches
 
 
+def find_files_by_content(
+    keyword: str, doc_path: Union[str, Path, None] = None
+) -> List[str]:
+    """
+    Find documentation files containing a specific keyword in their content.
+
+    Args:
+        keyword: The keyword to search for
+        doc_path: Path to documentation directory (defaults to DEFAULT_DOC_PATH)
+
+    Returns:
+        List of matching file paths
+    """
+    if doc_path is None:
+        doc_path = Path(DEFAULT_DOC_PATH)
+    else:
+        doc_path = Path(doc_path)
+
+    if not doc_path.exists():
+        print(f"Error: Documentation path not found: {doc_path}")
+        return []
+
+    matches = []
+    for rst_file in doc_path.rglob("*.rst"):
+        if search_in_file(keyword, rst_file):
+            path_str = str(rst_file.relative_to(doc_path))
+            matches.append(path_str)
+
+    return matches
+
+
 def list_structure(
     doc_path: Union[str, Path, None] = None, max_depth: int = 2
 ) -> Dict[str, List[str]]:
@@ -136,6 +167,7 @@ Usage:
 
 Commands:
     keyword <keyword>           - Find files by keyword in path/name
+    content <keyword>           - Find files by keyword in content
     structure [path]             - List documentation structure (optional path)
     sections [path]              - List main documentation sections (optional path)
     help                        - Show this help message
@@ -171,6 +203,22 @@ if __name__ == "__main__":
             print(
                 "\nTip: Try broader keywords or check the documentation structure with 'structure' command"
             )
+
+    elif command == "content" and len(sys.argv) >= 3:
+        keyword = " ".join(sys.argv[2:])
+        doc_path_arg = None
+        # Check if the last argument is a path
+        if len(sys.argv) >= 4 and sys.argv[-1].endswith("content"):
+            doc_path_arg = sys.argv[-1]
+            keyword = " ".join(sys.argv[2:-1])
+
+        results = find_files_by_content(keyword, doc_path_arg)
+        if results:
+            print(f"\nFound {len(results)} file(s) containing '{keyword}':\n")
+            for result in results:
+                print(f"  - {result}")
+        else:
+            print(f"\nNo files found containing '{keyword}'")
 
     elif command == "structure":
         doc_path_arg = sys.argv[2] if len(sys.argv) >= 3 else None

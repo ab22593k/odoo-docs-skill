@@ -45,6 +45,8 @@ Load the appropriate reference file for detailed guidance:
 - `references/developer.md` - Development tutorials, howtos, reference
 - `references/contributing.md` - Contribution guidelines
 - `references/legal.md` - Licenses, terms, legal information
+- `references/directives.md` - Custom RST directives (cards, spoilers, etc.)
+- `references/ui_elements.md` - Formatting for Odoo UI (guilabel, menuselection)
 - `references/search_patterns.md` - Advanced search strategies
 
 ## Common Query Patterns
@@ -104,8 +106,11 @@ Use `scripts/search_docs.py` for keyword-based file discovery when specific loca
 Use `scripts/search_docs.py` to search documentation:
 
 ```bash
-# Find files by keyword
+# Find files by keyword in path/name
 python3 scripts/search_docs.py keyword <keyword>
+
+# Find files by keyword in content
+python3 scripts/search_docs.py content <keyword>
 
 # List documentation structure
 python3 scripts/search_docs.py structure
